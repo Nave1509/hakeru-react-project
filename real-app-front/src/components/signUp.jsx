@@ -13,6 +13,10 @@ const SignUp = ({ redirect = "/" }) => {
   const { user, createUser } = useAuth();
 
   const [error, setError] = useState("");
+
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@%$#^&*\-_])(?=(.*\d){4,})[a-zA-Z!@%$#^&*\-_\d]{8,}$/;
+
   const form = useFormik({
     validateOnMount: true,
     initialValues: {
@@ -25,9 +29,18 @@ const SignUp = ({ redirect = "/" }) => {
         .min(6)
         .max(255)
         .required()
-        .email({ tlds: { allow: false } }),
-      password: Joi.string().min(6).max(1024).required(),
-      name: Joi.string().min(2).max(255).required(),
+        .email({ tlds: { allow: false } })
+        .label("Email"),
+      password: Joi.string()
+        .min(6)
+        .max(1024)
+        .required()
+        .regex(passwordRegex)
+        .messages({
+          "string.pattern.base": `The "Password" must contain at least 8 Characters, and include 1 Upper-Case letter, 1 Lower-Case letter, 1 Special Symbol(!@%$#^&*-_) and 4 digits(0-9).`,
+        })
+        .label("Password"),
+      name: Joi.string().min(2).max(255).required().label("Name"),
     }),
 
     async onSubmit(values) {

@@ -8,11 +8,12 @@ import PageHeader from "./common/pageHeader";
 import { useAuth } from "../context/auth.context";
 
 const SignIn = ({ redirect = "/" }) => {
-  const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const { login, user } = useAuth();
 
-  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
   const form = useFormik({
     validateOnMount: true,
     initialValues: {

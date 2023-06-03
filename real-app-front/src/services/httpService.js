@@ -1,7 +1,21 @@
 import axios from "axios";
 import config from "../config.json";
+import { toast } from "react-toastify";
 
 axios.defaults.baseURL = config.apiURL;
+
+export function setCommonHeader(headerName, value) {
+  axios.defaults.headers.common[headerName] = value;
+}
+
+axios.interceptors.response.use(null, (error) => {
+  if (error.code === "ERR_NETWORK") {
+    toast.error("Network error ");
+  } else if (error.response.status >= 403) {
+    toast.error("An unexpected occurred");
+  }
+  return error;
+});
 
 const httpService = {
   get: axios.get,
@@ -9,6 +23,7 @@ const httpService = {
   patch: axios.patch,
   put: axios.put,
   delete: axios.delete,
+  setCommonHeader,
 };
 
 export default httpService;

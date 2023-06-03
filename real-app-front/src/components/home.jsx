@@ -5,7 +5,7 @@ const Home = () => {
     <PageHeader
       title={
         <>
-          Real <i className="bi bi-geo-fill"></i> App
+          Real <i className="bi bi-boxes mx-2"></i> App
         </>
       }
       description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur blanditiis aliquam esse omnis assumenda tempore, molestias suscipit deserunt et, itaque, officia nam neque quasi modi sint exercitationem sequi beatae unde!"
