@@ -6,11 +6,12 @@ import { formikValidateUsingJoi } from "../utils/formikValidateUsingJoi";
 import { useNavigate, Navigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../context/auth.context";
+import ChecKbox from "./common/checkbox";
 
-const SignUp = ({ redirect = "/" }) => {
+const SignUp = () => {
   const navigate = useNavigate();
 
-  const { user, createUser } = useAuth();
+  const { user, createUser, login } = useAuth();
 
   const [error, setError] = useState("");
 
@@ -23,6 +24,7 @@ const SignUp = ({ redirect = "/" }) => {
       email: "",
       password: "",
       name: "",
+      biz: false,
     },
     validate: formikValidateUsingJoi({
       email: Joi.string()
@@ -41,15 +43,18 @@ const SignUp = ({ redirect = "/" }) => {
         })
         .label("Password"),
       name: Joi.string().min(2).max(255).required().label("Name"),
+      biz: Joi.boolean(),
     }),
 
     async onSubmit(values) {
       try {
-        await createUser({ ...values, biz: false });
-        navigate(redirect);
+        await createUser(values);
+        await login({ email: values.email, password: values.password });
+        navigate("/");
       } catch ({ response }) {
         if (response && response.status === 400) {
           setError(response.data);
+          console.log(response);
         }
       }
     },
@@ -61,10 +66,7 @@ const SignUp = ({ redirect = "/" }) => {
 
   return (
     <>
-      <PageHeader
-        title="Sign Up with Real App"
-        description="open a new account"
-      />
+      <PageHeader title="Sign Up " description="open a new account" />
 
       <form onSubmit={form.handleSubmit} noValidate>
         {error && <div className="alert alert-danger">{error}</div>}
@@ -87,6 +89,12 @@ const SignUp = ({ redirect = "/" }) => {
           type="text"
           label="Name"
           required
+          error={form.touched.name && form.errors.name}
+        />
+        <ChecKbox
+          {...form.getFieldProps("biz")}
+          type="checkbox"
+          label="Sign Up as a Business"
           error={form.touched.name && form.errors.name}
         />
         <div className="my-2">

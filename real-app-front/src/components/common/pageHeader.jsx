@@ -1,20 +1,10 @@
 const PageHeader = ({ title, description }) => {
   return (
-    <>
-      <div className="row mt-4">
-        <div className="col-12">
-          <h1>{title}</h1>
-        </div>
-      </div>
+    <div className="col-12 col-sm-6 mt-4 mx-auto text-center">
+      <h1 className="my-2">{title}</h1>
 
-      {description && (
-        <div className="row mt-2">
-          <div className="col-12">
-            <p>{description}</p>
-          </div>
-        </div>
-      )}
-    </>
+      {description && <p>{description}</p>}
+    </div>
   );
 };
 export default PageHeader;

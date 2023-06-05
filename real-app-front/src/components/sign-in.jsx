@@ -47,10 +47,7 @@ const SignIn = ({ redirect = "/" }) => {
 
   return (
     <>
-      <PageHeader
-        title="Sign In with Real App"
-        description="Sign in to your account"
-      />
+      <PageHeader title="Sign In " description="Sign in to your account" />
 
       <form onSubmit={form.handleSubmit} noValidate>
         {error && <div className="alert alert-danger">{error}</div>}

@@ -18,7 +18,7 @@ const NavBar = () => {
     >
       <div className="container">
         <Link className="navbar-brand" to="/">
-          Real <i className="bi bi-geo"> App</i>
+          Build Your<i className="bi bi-boxes mx-2"></i>Biz
         </Link>
         <button
           className="navbar-toggler"
@@ -67,11 +67,6 @@ const NavBar = () => {
                     Sign Up
                   </NavLink>
                 </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/sign-up-biz">
-                    Sign Up Business
-                  </NavLink>
-                </li>
               </>
             )}
           </ul>
@@ -83,7 +78,7 @@ const NavBar = () => {
           {themeMode === "light" ? (
             <i className="bi bi-moon"></i>
           ) : (
-            <i class="bi bi-brightness-high"></i>
+            <i className="bi bi-brightness-high"></i>
           )}
         </button>
       </div>
