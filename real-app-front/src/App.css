@@ -1,7 +1,3 @@
-/* html[data-bs-theme="dark"] nav {
-  color: white;
-} */
-
 * {
   font-family: "Kalam", cursive;
 }
@@ -32,4 +28,10 @@ html[data-bs-theme="dark"] input {
 }
 html[data-bs-theme="light"] input {
   box-shadow: 0 0 10px 0 #040303;
+}
+html[data-bs-theme="light"] .textInfo {
+  color: #000000;
+}
+html[data-bs-theme="dark"] .textInfo {
+  color: #6edff6;
 }

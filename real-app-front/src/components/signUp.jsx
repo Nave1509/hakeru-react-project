@@ -54,7 +54,6 @@ const SignUp = () => {
       } catch ({ response }) {
         if (response && response.status === 400) {
           setError(response.data);
-          console.log(response);
         }
       }
     },

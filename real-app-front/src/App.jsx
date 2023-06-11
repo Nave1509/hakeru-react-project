@@ -13,6 +13,8 @@ import SignIn from "./components/sign-in";
 import SignOut from "./components/sign-out";
 import SignUp from "./components/signUp";
 import "./services/userServices";
+import CardsDelete from "./components/cardsDelete";
+import CardsEdit from "./components/cardsEdit";
 
 function App() {
   return (
@@ -43,6 +45,22 @@ function App() {
               element={
                 <ProtectedRoute onlyBiz>
                   <CardsCreate />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="my-cards/delete/:id"
+              element={
+                <ProtectedRoute onlyBiz>
+                  <CardsDelete />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="my-cards/edit/:id"
+              element={
+                <ProtectedRoute onlyBiz>
+                  <CardsEdit />
                 </ProtectedRoute>
               }
             />

@@ -14,7 +14,7 @@ axios.interceptors.response.use(null, (error) => {
   } else if (error.response.status >= 403) {
     toast.error("An unexpected occurred");
   }
-  return error;
+  return Promise.reject(error);
 });
 
 const httpService = {

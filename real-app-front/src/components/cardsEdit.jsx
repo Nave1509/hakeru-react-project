@@ -1,16 +1,21 @@
 import { useFormik } from "formik";
 import Joi from "joi";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { formikValidateUsingJoi } from "../utils/formikValidateUsingJoi";
 import Input from "./common/input";
 import PageHeader from "./common/pageHeader";
 import cardService from "../services/cardService";
+import { useCards } from "../hooks/useCard";
+import { toast } from "react-toastify";
 
-const CardsCreate = () => {
+const CardsEdit = () => {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+  const { id } = useParams();
+  const card = useCards(id);
+
   const form = useFormik({
     validateOnMount: true,
     initialValues: {
@@ -43,7 +48,8 @@ const CardsCreate = () => {
         if (bizImage) {
           body.bizImage = bizImage;
         }
-        await cardService.createCard(body);
+        await cardService.updateCard(id, body);
+        toast("Card Updated Successfully 👏👏");
         navigate("/my-cards");
       } catch ({ response }) {
         if (response && response.status === 400) {
@@ -52,11 +58,19 @@ const CardsCreate = () => {
       }
     },
   });
+
+  useEffect(() => {
+    if (!card) return;
+    const { bizName, bizDescription, bizAddress, bizPhone, bizImage } = card;
+
+    form.setValues({ bizName, bizDescription, bizAddress, bizPhone, bizImage });
+  }, [card]);
+
   return (
     <>
       <PageHeader
-        title="Create Card"
-        description="Start creating Fast and easy business cards "
+        title="Edit Card"
+        description="Start Edit Fast and easy business cards "
       />
       <p className=" fs-5 textInfo">Enter your information</p>
 
@@ -103,11 +117,11 @@ const CardsCreate = () => {
             disabled={!form.isValid}
             className="btn btn-primary"
           >
-            Create Card
+            Edit Card
           </button>
         </div>
       </form>
     </>
   );
 };
-export default CardsCreate;
+export default CardsEdit;
