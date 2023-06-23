@@ -60,7 +60,7 @@ router.post("/", auth, async (req, res) => {
     bizPhone: req.body.bizPhone,
     bizImage: req.body.bizImage
       ? req.body.bizImage
-      : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+      : "https://cdn.pixabay.com/photo/2017/04/03/15/52/for-you-2198772_1280.png",
     bizNumber: await generateBizNumber(Card),
     user_id: req.user._id,
   });
