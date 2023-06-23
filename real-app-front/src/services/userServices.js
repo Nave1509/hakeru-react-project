@@ -1,6 +1,5 @@
-import getAll from "./cardService";
-import httpService from "./httpService";
 import jwtDecode from "jwt-decode";
+import httpService from "./httpService";
 
 const TOKEN_KEY = "token";
 

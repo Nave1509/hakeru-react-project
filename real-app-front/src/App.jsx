@@ -15,16 +15,20 @@ import SignUp from "./components/signUp";
 import "./services/userServices";
 import CardsDelete from "./components/cardsDelete";
 import CardsEdit from "./components/cardsEdit";
+import CardView from "./components/cardView";
 
 function App() {
   return (
-    <div id="main" className="app d-flex flex-column min-vh-100">
-      <div id="mainOverlay" className="app d-flex flex-column min-vh-100">
-        <ToastContainer />
-        <header>
-          <NavBar />
-        </header>
-        <div className="flex-fill container ">
+    <div className="app d-flex flex-column min-vh-100">
+      <ToastContainer />
+      <header>
+        <NavBar />
+      </header>
+      <div id="main" className="flex-fill d-flex flex-column">
+        <div
+          id="mainOverlay"
+          className="d-flex flex-fill flex-column d-flex px-5 pb-3"
+        >
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="about" element={<About />} />
@@ -32,6 +36,14 @@ function App() {
             <Route path="sign-in" element={<SignIn redirect="/" />} />
             <Route path="sign-out" element={<SignOut redirect="/" />} />
 
+            <Route
+              path="my-cards/view/:id"
+              element={
+                <ProtectedRoute onlyBiz>
+                  <CardView />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="my-cards"
               element={

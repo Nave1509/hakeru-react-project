@@ -67,7 +67,11 @@ const SignUp = () => {
     <>
       <PageHeader title="Sign Up " description="open a new account" />
 
-      <form onSubmit={form.handleSubmit} noValidate>
+      <form
+        onSubmit={form.handleSubmit}
+        noValidate
+        style={{ margin: "auto", width: "55%" }}
+      >
         {error && <div className="alert alert-danger">{error}</div>}
         <Input
           {...form.getFieldProps("email")}

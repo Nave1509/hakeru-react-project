@@ -13,11 +13,13 @@ const MyCards = () => {
         description="your cards are in the list below"
       />
       <div className="row flex-column align-content-center align-items-center ">
-        <div className="col-12 col-sm-6 text-center">
-          <Link to="/create-card">create a new card</Link>
+        <div className="col-12 col-sm-6 text-center mb-3">
+          <Link className="btn btn-success" to="/create-card">
+            create a new card
+          </Link>
         </div>
         <div
-          className="col-12 col-sm-10 text-center"
+          className="col-12 col-sm-12 text-center"
           style={{
             display: "flex",
             flexWrap: "wrap",

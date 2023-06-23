@@ -26,7 +26,7 @@ const SignIn = ({ redirect = "/" }) => {
         .max(255)
         .required()
         .email({ tlds: { allow: false } }),
-      password: Joi.string().min(6).max(1024).required(),
+      password: Joi.string().min(7).max(1024).required(),
     }),
 
     async onSubmit(values) {
@@ -49,7 +49,11 @@ const SignIn = ({ redirect = "/" }) => {
     <>
       <PageHeader title="Sign In " description="Sign in to your account" />
 
-      <form onSubmit={form.handleSubmit} noValidate>
+      <form
+        onSubmit={form.handleSubmit}
+        noValidate
+        style={{ margin: "auto", width: "55%" }}
+      >
         {error && <div className="alert alert-danger">{error}</div>}
         <Input
           {...form.getFieldProps("email")}

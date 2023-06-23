@@ -4,16 +4,19 @@ import { useEffect, useState } from "react";
 
 const NavBar = () => {
   const { user } = useAuth();
-  const [themeMode, setThemeMode] = useState("light");
+  const [themeMode, setThemeMode] = useState(
+    localStorage.getItem("theMode") || "light"
+  );
   const htmlTag = document.getElementsByTagName("html")[0];
 
   useEffect(() => {
     htmlTag.setAttribute("data-bs-theme", themeMode);
+    localStorage.setItem("theMode", themeMode);
   }, [themeMode]);
 
   return (
     <nav
-      className="navbar navbar-expand-sm  shadow-sm "
+      className="navbar navbar-expand-sm shadow-sm "
       aria-label="Fifth navbar example"
     >
       <div className="container">
@@ -42,7 +45,7 @@ const NavBar = () => {
             {user?.biz && (
               <li className="nav-item">
                 <NavLink className="nav-link" to="/my-cards">
-                  My Card
+                  My Cards
                 </NavLink>
               </li>
             )}
