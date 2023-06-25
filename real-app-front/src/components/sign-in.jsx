@@ -50,9 +50,10 @@ const SignIn = ({ redirect = "/" }) => {
       <PageHeader title="Sign In " description="Sign in to your account" />
 
       <form
+        className="col-12 col-sm-6"
         onSubmit={form.handleSubmit}
         noValidate
-        style={{ margin: "auto", width: "55%" }}
+        style={{ margin: "auto" }}
       >
         {error && <div className="alert alert-danger">{error}</div>}
         <Input
@@ -70,11 +71,11 @@ const SignIn = ({ redirect = "/" }) => {
           error={form.touched.password && form.errors.password}
         />
 
-        <div className="my-2">
+        <div className="my-2 d-flex">
           <button
             type="submit"
             disabled={!form.isValid}
-            className="btn btn-primary"
+            className="btn btn-primary  ms-auto"
           >
             Sign In
           </button>

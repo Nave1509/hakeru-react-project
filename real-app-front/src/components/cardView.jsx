@@ -10,7 +10,7 @@ const CardView = () => {
   useEffect(() => {
     const getCardInfo = async () => {
       const { data } = await getCard(id);
-      console.log(data);
+
       setCard(data);
     };
     getCardInfo();
@@ -21,16 +21,16 @@ const CardView = () => {
       {card && (
         <div id="cardView" className="mt-3">
           <div
+            className="col-12 col-sm-6"
             style={{
               backgroundImage: `url(${card.bizImage})`,
               backgroundSize: "cover",
               backgroundPosition: "center center",
-              width: "60%",
               height: "300px",
               margin: "0 auto",
             }}
           ></div>
-          <div className="d-flex flex-column align-items-center w-25 mx-auto">
+          <div className="d-flex flex-column align-items-center w-100 w-sm-25 mx-auto">
             <h1 className="text-center my-2">{card.bizName}</h1>
             <p className="text-center mt-2">{card.bizDescription}</p>
 

@@ -68,9 +68,10 @@ const SignUp = () => {
       <PageHeader title="Sign Up " description="open a new account" />
 
       <form
+        className="col-12 col-sm-6"
         onSubmit={form.handleSubmit}
         noValidate
-        style={{ margin: "auto", width: "55%" }}
+        style={{ margin: "auto" }}
       >
         {error && <div className="alert alert-danger">{error}</div>}
         <Input
@@ -100,11 +101,11 @@ const SignUp = () => {
           label="Sign Up as a Business"
           error={form.touched.name && form.errors.name}
         />
-        <div className="my-2">
+        <div className="my-2 d-flex">
           <button
             type="submit"
             disabled={!form.isValid}
-            className="btn btn-primary"
+            className="btn btn-primary ms-auto"
           >
             Sign Up
           </button>

@@ -58,9 +58,13 @@ const CardsCreate = () => {
         title="Create Card"
         description="Start creating Fast and easy business cards "
       />
-      <p className=" fs-5 textInfo">Enter your information</p>
+      <p className="fs-5 textInfo text-center">Enter your information</p>
 
-      <form onSubmit={form.handleSubmit} noValidate>
+      <form
+        className="col-12 col-sm-6 mx-auto"
+        onSubmit={form.handleSubmit}
+        noValidate
+      >
         {error && <div className="alert alert-danger">{error}</div>}
         <Input
           {...form.getFieldProps("bizName")}
@@ -97,11 +101,11 @@ const CardsCreate = () => {
           error={form.touched.bizImage && form.errors.bizImage}
         />
 
-        <div className="my-2">
+        <div className="my-2 d-flex">
           <button
             type="submit"
             disabled={!form.isValid}
-            className="btn btn-primary"
+            className="btn btn-primary ms-auto"
           >
             Create Card
           </button>
